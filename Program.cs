@@ -1,9 +1,12 @@
+using Shop;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddMvc(option => option.EnableEndpointRouting = false);
+
+var startup = new Startup();
+startup.ConfigureServices(builder.Services);
+
 var app = builder.Build();
 
-app.UseDeveloperExceptionPage();
-app.UseStatusCodePages();
-app.UseStaticFiles();
-app.UseMvcWithDefaultRoute();
+startup.Configure(app);
+
 app.Run();

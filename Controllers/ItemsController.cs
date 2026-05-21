@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Data.Interfaces;
-using Shop.Data.Models;
-using System.Collections.Generic;
 
 namespace Shop.Controllers
 {

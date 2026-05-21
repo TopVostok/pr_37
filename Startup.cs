@@ -9,11 +9,8 @@ namespace Shop
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            // объединяем интерфейс и реализующий класс
             services.AddTransient<ICategories, MockCategories>();
             services.AddTransient<IItems, MockItems>();
-
-            // включаем поддержку MVC
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
@@ -22,7 +19,15 @@ namespace Shop
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+
+            // Маршрут по умолчанию
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Items}/{action=List}/{id?}"
+                );
+            });
         }
     }
 }

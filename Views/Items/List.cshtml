@@ -1,0 +1,23 @@
+﻿@using Shop.Data.Models
+@model IEnumerable<Items>
+
+@{
+    ViewBag.Title = "Все предметы";
+}
+
+<h2>Все предметы</h2>
+
+@foreach (var item in Model)
+{
+    <div class="item">
+        <div class="item-img">
+            <img src="@item.Img" alt="@item.Name" />
+        </div>
+        <div class="item-data">
+            <h3>Модель: @item.Name</h3>
+            <div>Цена: @item.Price.ToString("c")</div>
+            <div>Категория: @item.Category?.Name</div>
+            <div>Описание: @item.Description</div>
+        </div>
+    </div>
+}
